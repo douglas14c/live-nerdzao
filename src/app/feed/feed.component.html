@@ -1,0 +1,17 @@
+<div class="ui segment">
+  <!-- Mensagem para quando nõ houverem tweets -->
+  <div class="ui yellow message" *ngIf='!tweets'>
+    <i class="star icon"></i>
+    Não existem tweets.
+  </div>
+
+  <div class="ui green message" *ngIf='likedTweet'>Você deixou seu like para o tweet de {{likedTweet.name}}</div>
+
+  <!-- Listagem de Tweets -->
+  <app-tweet *ngFor='let currTweet of tweets' [tweet]='currTweet' (likedTweetChild)='handleLikedTweetFromChildComponent($event)'></app-tweet>
+  
+  <div class="ui input">
+    <input type="text" placeholder="Digite alguma coisa" [(ngModel)]="newTweet.body"/>
+  </div>
+  <button class="ui button" (click)="createTweet()">Tweetar</button>
+</div>
